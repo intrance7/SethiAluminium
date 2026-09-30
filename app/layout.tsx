@@ -21,7 +21,10 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} — ${siteConfig.tagline}`,
+  title: {
+    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    template: `%s — ${siteConfig.shortName}`,
+  },
   description: siteConfig.description,
 };
 

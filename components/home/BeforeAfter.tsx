@@ -2,9 +2,12 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { BeforeAfterSlider } from "@/components/ui/BeforeAfterSlider";
 import { getProjects } from "@/lib/data";
+import { publicFileExists } from "@/lib/public-file";
 
 export function BeforeAfter() {
-  const project = getProjects().find((p) => p.beforeImage && p.afterImage);
+  const project = getProjects().find(
+    (p) => publicFileExists(p.beforeImage) && publicFileExists(p.afterImage)
+  );
 
   if (!project) return null;
 

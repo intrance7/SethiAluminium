@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { PageHero } from "@/components/ui/PageHero";
 import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
-import { SmartImage } from "@/components/ui/SmartImage";
-import { Button } from "@/components/ui/Button";
+import { PlusRow } from "@/components/ui/PlusRow";
+import { RollText } from "@/components/ui/RollText";
+import { NextPageLink } from "@/components/ui/NextPageLink";
+import { ProjectCard } from "@/components/projects/ProjectCard";
 import { getServices, getServiceBySlug, getProjectsByService } from "@/lib/data";
 
 export function generateStaticParams() {
@@ -34,76 +37,78 @@ export default async function ServiceCategoryPage({
   const service = getServiceBySlug(category);
   if (!service) notFound();
 
+  const services = getServices();
+  const next = services[(services.indexOf(service) + 1) % services.length];
   const relatedProjects = getProjectsByService(service.slug);
 
   return (
-    <div className="pt-28 pb-20 lg:pt-36 lg:pb-32">
-      <Container>
-        <p className="text-xs font-medium uppercase tracking-[0.2em] text-metal-500">
-          {service.number} · Services
-        </p>
-        <h1 className="mt-3 text-[clamp(2rem,5vw,3.5rem)] font-medium tracking-tight text-ink">
-          {service.title}
-        </h1>
-        <p className="mt-4 max-w-xl text-base leading-relaxed text-metal-700">
-          {service.shortDescription}
-        </p>
-
-        <PlaceholderImage
-          label={`${service.title} — hero photo`}
-          className="mt-10 aspect-[16/7] w-full rounded-3xl"
-        />
-
-        <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
-          <div>
-            <h2 className="text-lg font-medium text-ink">What&apos;s included</h2>
-            <ul className="mt-4 space-y-2">
-              {service.items.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-xl border border-ink/10 px-4 py-3 text-sm text-ink/80"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <Button
-              href={`/quote?service=${service.slug}`}
-              className="mt-6 w-full sm:w-auto"
-            >
-              Get a Quote for {service.title}
-            </Button>
-          </div>
-
-          <div>
-            <h2 className="text-lg font-medium text-ink">Related work</h2>
-            {relatedProjects.length === 0 ? (
-              <p className="mt-4 text-sm text-metal-500">
-                Project photos for this category are coming soon.
-              </p>
-            ) : (
-              <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2">
-                {relatedProjects.map((project) => (
-                  <Link key={project.slug} href={`/projects/${project.slug}`}>
-                    <SmartImage
-                      src={project.coverImage}
-                      label={project.title}
-                      alt={project.title}
-                      width={600}
-                      height={450}
-                      className="aspect-[4/3] w-full rounded-xl object-cover"
-                    />
-                    <p className="mt-2 text-sm font-medium text-ink">
-                      {project.title}
-                    </p>
-                    <p className="text-xs text-metal-500">{project.location}</p>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+    <>
+      <PageHero
+        eyebrow={`${service.number} — Services`}
+        title={[service.title]}
+        caption={service.shortDescription}
+      >
+        <div className="mt-10 lg:mt-14">
+          <PlaceholderImage
+            label={`${service.title} — hero photo`}
+            className="aspect-[4/3] w-full rounded-2xl sm:aspect-[16/7]"
+          />
+          <PlusRow count={4} className="mt-4" />
         </div>
-      </Container>
-    </div>
+      </PageHero>
+
+      <section className="bg-paper py-16 lg:py-28">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-12">
+            <h2 className="text-[clamp(2rem,4vw,3.5rem)] leading-[1] tracking-[-0.03em] text-ink lg:col-span-4">
+              What&apos;s included
+            </h2>
+            <div className="lg:col-span-8">
+              <ol className="border-b border-ink/10">
+                {service.items.map((item, index) => (
+                  <li
+                    key={item}
+                    className="flex items-baseline gap-6 border-t border-ink/10 py-5 lg:py-6"
+                  >
+                    <span className="w-8 shrink-0 text-sm text-metal-500">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-2xl tracking-tight text-ink lg:text-3xl">{item}</span>
+                  </li>
+                ))}
+              </ol>
+              <Link
+                href={`/quote?service=${service.slug}`}
+                className="group mt-10 inline-flex h-12 items-center gap-3 rounded-full bg-ink px-6 text-xs font-medium uppercase tracking-wide text-paper transition-colors hover:bg-accent"
+              >
+                <RollText text={`Get a quote for ${service.title}`} />
+                <span aria-hidden>→</span>
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-paper pb-24 lg:pb-36">
+        <Container>
+          <h2 className="text-[clamp(2rem,4vw,3.5rem)] leading-[1] tracking-[-0.03em] text-ink">
+            Related work
+          </h2>
+          {relatedProjects.length === 0 ? (
+            <p className="mt-6 text-base text-metal-500">
+              Project photos for this category are coming soon.
+            </p>
+          ) : (
+            <div className="mt-10 grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2">
+              {relatedProjects.map((project) => (
+                <ProjectCard key={project.slug} project={project} />
+              ))}
+            </div>
+          )}
+        </Container>
+      </section>
+
+      <NextPageLink href={`/services/${next.slug}`} label="Next service" title={next.title} />
+    </>
   );
 }

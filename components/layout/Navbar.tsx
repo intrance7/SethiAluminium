@@ -94,7 +94,7 @@ export function Navbar() {
               href="/quote"
               className={clsx(
                 pill,
-                "hidden bg-ink text-paper hover:bg-metal-900 sm:inline-flex",
+                "hidden bg-ink text-paper ring-1 ring-paper/15 hover:bg-metal-900 sm:inline-flex",
               )}
             >
               <RollText text="Get a Quote" />

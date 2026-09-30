@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PageHero } from "@/components/ui/PageHero";
+import { RollText } from "@/components/ui/RollText";
+import { ClosingCta } from "@/components/home/ClosingCta";
 import { getServices } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -14,35 +16,45 @@ export default function ServicesPage() {
   const services = getServices();
 
   return (
-    <div className="pt-28 pb-20 lg:pt-36 lg:pb-32">
-      <Container>
-        <SectionHeading
-          eyebrow="Services"
-          title="Everything we build, in six categories."
-          intro="Each category covers a full range of work — from a single window to a complete interior and exterior fit-out."
-        />
+    <>
+      <PageHero
+        eyebrow="Services"
+        title={["Everything", "we build"]}
+        caption="Six categories, one team. From a single window to a complete interior and exterior fit-out."
+      />
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => (
-            <Link
-              key={service.slug}
-              href={`/services/${service.slug}`}
-              className="group rounded-2xl border border-ink/10 p-6 transition-colors hover:border-ink/30"
-            >
-              <span className="text-xs text-metal-500">{service.number}</span>
-              <h3 className="mt-2 text-xl font-medium text-ink">
-                {service.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-metal-700">
-                {service.shortDescription}
-              </p>
-              <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-accent">
-                Explore →
-              </span>
-            </Link>
-          ))}
-        </div>
-      </Container>
-    </div>
+      <section className="bg-paper pb-24 lg:pb-36">
+        <Container>
+          <ul className="border-b border-ink/10">
+            {services.map((service) => (
+              <li key={service.slug} className="border-t border-ink/10">
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="group grid grid-cols-[auto_1fr_auto] items-center gap-x-4 gap-y-2 py-8 sm:gap-x-8 lg:grid-cols-[6rem_1fr_minmax(0,22rem)_auto] lg:py-10"
+                >
+                  <span className="self-start pt-2 text-sm text-metal-500 lg:pt-4">
+                    {service.number}
+                  </span>
+                  <span className="text-[clamp(2.25rem,6vw,5rem)] leading-[1.05] tracking-[-0.03em] text-ink transition-colors duration-300 group-hover:text-accent">
+                    <RollText text={service.title} />
+                  </span>
+                  <span className="col-span-3 col-start-2 row-start-2 text-sm leading-relaxed text-metal-700 lg:col-span-1 lg:col-start-3 lg:row-start-1">
+                    {service.shortDescription}
+                  </span>
+                  <span
+                    aria-hidden
+                    className="col-start-3 row-start-1 flex h-12 w-12 items-center justify-center rounded-full border border-ink/15 text-ink transition-all duration-500 group-hover:border-ink group-hover:bg-ink group-hover:text-paper lg:col-start-4 lg:h-14 lg:w-14"
+                  >
+                    →
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      <ClosingCta />
+    </>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { usePreloaderDone } from "@/components/motion/usePreloaderDone";
 import { clsx } from "clsx";
 
 /**
@@ -26,6 +27,9 @@ export function RevealLines({
   // their masks, so an observer on them would never report them as visible.
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+  // Above-the-fold headings wait for the intro reveal instead of playing behind it.
+  const revealed = usePreloaderDone();
+  const show = inView && revealed;
 
   return (
     <Tag ref={ref as React.RefObject<never>} className={className} aria-label={lines.join(" ")}>
@@ -34,7 +38,7 @@ export function RevealLines({
           <motion.span
             className="block"
             initial={{ y: "110%" }}
-            animate={{ y: inView ? "0%" : "110%" }}
+            animate={{ y: show ? "0%" : "110%" }}
             transition={{ duration: 1, delay: delay + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
           >
             {line}
