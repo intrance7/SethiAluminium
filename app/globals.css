@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+:root {
+  --color-ink: #12141a;
+  --color-paper: #f7f6f3;
+  --color-metal-100: #e4e5e7;
+  --color-metal-300: #c3c6cb;
+  --color-metal-500: #8a8f98;
+  --color-metal-700: #464a52;
+  --color-metal-900: #2b2e34;
+  --color-accent: #c97a3d;
+  --color-accent-dark: #a8632f;
+
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-paper: var(--color-paper);
+  --color-metal-100: var(--color-metal-100);
+  --color-metal-300: var(--color-metal-300);
+  --color-metal-500: var(--color-metal-500);
+  --color-metal-700: var(--color-metal-700);
+  --color-metal-900: var(--color-metal-900);
+  --color-accent: var(--color-accent);
+  --color-accent-dark: var(--color-accent-dark);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-geist);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  font-weight: 400;
+}
+
+/* Set by the inline script in app/layout.tsx */
+[data-preloader-skip] [data-preloader] {
+  display: none;
+}
+
+/* Letter-roll hover (see components/ui/RollText.tsx) */
+.roll-char {
+  position: relative;
+  display: inline-block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i) * 18ms);
+}
+.roll-char::after {
+  content: attr(data-char);
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+.group:hover .roll-char,
+.group:focus-visible .roll-char {
+  transform: translateY(-100%);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.custom-cursor-active,
+.custom-cursor-active a,
+.custom-cursor-active button {
+  cursor: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

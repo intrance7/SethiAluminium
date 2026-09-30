@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "modern-residence-tohana",
+    "title": "Modern Residence",
+    "location": "Tohana, Haryana",
+    "projectType": "Home",
+    "services": ["aluminium", "glass", "interior"],
+    "serviceLabels": ["Aluminium Windows", "Glass Railing", "False Ceiling"],
+    "coverImage": "/images/projects/modern-residence-tohana-1.jpg",
+    "gallery": [
+      "/images/projects/modern-residence-tohana-1.jpg",
+      "/images/projects/modern-residence-tohana-2.jpg"
+    ],
+    "beforeImage": "/images/projects/modern-residence-tohana-before.jpg",
+    "afterImage": "/images/projects/modern-residence-tohana-after.jpg",
+    "materials": ["Aluminium", "Glass", "PVC"],
+    "description": "A full exterior and interior fabrication project covering aluminium sliding windows, a glass balcony railing and a false ceiling finish across the ground floor.",
+    "published": true
+  },
+  {
+    "slug": "commercial-shopfront-fatehabad",
+    "title": "Commercial Shopfront",
+    "location": "Fatehabad, Haryana",
+    "projectType": "Shop",
+    "services": ["glass", "exterior"],
+    "serviceLabels": ["Glass Shopfront", "ACP Cladding"],
+    "coverImage": "/images/projects/commercial-shopfront-fatehabad-1.jpg",
+    "gallery": ["/images/projects/commercial-shopfront-fatehabad-1.jpg"],
+    "beforeImage": "/images/projects/commercial-shopfront-fatehabad-before.jpg",
+    "afterImage": "/images/projects/commercial-shopfront-fatehabad-after.jpg",
+    "materials": ["Glass", "ACP"],
+    "description": "A full-glass shopfront with an ACP-clad facade, designed to maximise street visibility for a retail storefront.",
+    "published": true
+  },
+  {
+    "slug": "office-interior-hisar",
+    "title": "Office Interior Fit-out",
+    "location": "Hisar, Haryana",
+    "projectType": "Office",
+    "services": ["interior", "fabrication"],
+    "serviceLabels": ["False Ceiling", "Partitions"],
+    "coverImage": "/images/projects/office-interior-hisar-1.jpg",
+    "gallery": ["/images/projects/office-interior-hisar-1.jpg"],
+    "beforeImage": "",
+    "afterImage": "",
+    "materials": ["PVC", "Aluminium"],
+    "description": "Complete interior fit-out including a false ceiling, aluminium-framed partitions and finishing for a two-floor office space.",
+    "published": true
+  }
+]

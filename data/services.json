@@ -1,0 +1,86 @@
+[
+  {
+    "slug": "aluminium",
+    "number": "01",
+    "title": "Aluminium",
+    "shortDescription": "Doors, windows, partitions and custom fabrication in aluminium.",
+    "items": [
+      "Aluminium Doors",
+      "Aluminium Windows",
+      "Sliding Windows",
+      "Aluminium Partitions",
+      "Aluminium Frames",
+      "Custom Fabrication"
+    ]
+  },
+  {
+    "slug": "glass",
+    "number": "02",
+    "title": "Glass",
+    "shortDescription": "Glass doors, windows, partitions, railings and shopfronts.",
+    "items": [
+      "Glass Doors",
+      "Glass Windows",
+      "Glass Partitions",
+      "Glass Railings",
+      "Shopfronts",
+      "Custom Glass Work"
+    ]
+  },
+  {
+    "slug": "exterior",
+    "number": "03",
+    "title": "Exterior",
+    "shortDescription": "ACP cladding, facades, exterior panels, grills and gates.",
+    "items": [
+      "ACP Cladding",
+      "Building Facades",
+      "Exterior Panels",
+      "Grills",
+      "Gates",
+      "Railings"
+    ]
+  },
+  {
+    "slug": "interior",
+    "number": "04",
+    "title": "Interior",
+    "shortDescription": "False ceilings, PVC and wall panels, partitions and finishing.",
+    "items": [
+      "False Ceiling",
+      "PVC Panels",
+      "Wall Panels",
+      "Partitions",
+      "Decorative Panels",
+      "Interior Finishing"
+    ]
+  },
+  {
+    "slug": "fabrication",
+    "number": "05",
+    "title": "Fabrication",
+    "shortDescription": "Custom metal and aluminium fabrication, grills, gates and structural work.",
+    "items": [
+      "Custom Aluminium Work",
+      "Metal Fabrication",
+      "Grills",
+      "Gates",
+      "Frames",
+      "Structural Work"
+    ]
+  },
+  {
+    "slug": "design-installation",
+    "number": "06",
+    "title": "Design & Installation",
+    "shortDescription": "From site measurement to design, fabrication and finishing.",
+    "items": [
+      "Site Measurement",
+      "Design",
+      "Material Selection",
+      "Fabrication",
+      "Installation",
+      "Finishing"
+    ]
+  }
+]
